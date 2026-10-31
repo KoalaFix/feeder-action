@@ -1,0 +1,17 @@
+KoalaFix Feeders Licence
+
+Copyright 2026 KoalaFix PTY LTD. All rights reserved.
+
+This licence covers the @koalafix/feeders package and the KoalaFix feeder GitHub Action (the "Software").
+
+1. You may install, copy and run the Software to send facts to KoalaFix, the hosted service run by KoalaFix PTY LTD,
+   while you hold a KoalaFix account. That includes running it in your own CI, on your own machines and on hosted CI
+   runners, and keeping copies in your repositories, caches and images for that purpose.
+2. You may change the Software for your own use with KoalaFix. You may not publish, sell, sublicense or otherwise
+   distribute the Software or a changed copy, use it with any other service, or use it to build a product that
+   competes with KoalaFix.
+3. The Software is provided "as is", without warranty of any kind, express or implied, including the warranties of
+   merchantability, fitness for a particular purpose and non-infringement. To the extent the law allows, KoalaFix
+   PTY LTD is not liable for any claim, damage or other liability arising from the Software or its use.
+4. Your use of the KoalaFix service itself is governed by the terms of your KoalaFix account.
+5. This licence ends automatically if you break it. When it ends, stop using the Software and delete your copies.

@@ -1,0 +1,56 @@
+# SPDX-License-Identifier: LicenseRef-KoalaFix-Feeders
+# Copyright 2026 KoalaFix PTY LTD
+#
+# The KoalaFix machines as one GitHub Actions step: see README.md for each step and LICENSE for the terms.
+name: KoalaFix machine
+description: Write a release, an npm or PyPI version, an image digest or a health check to your KoalaFix team memory.
+author: KoalaFix
+branding:
+  icon: check-circle
+  color: green
+inputs:
+  feeder:
+    description: Which feeder runs. github-release, npm-version, pypi-version, http-probe or image-tag.
+    required: true
+  token:
+    description: The feeder token, from a repository secret. Masked in the log before anything else runs.
+    required: true
+  server-url:
+    description: The KoalaFix server's address.
+    required: false
+    default: https://mcp.koalafix.com
+  space:
+    description: The space the key belongs to.
+    required: true
+  key:
+    description: The key to write, lower-case subject.fact, for example release.latest.
+    required: true
+  package:
+    description: npm-version and pypi-version only. The npm package or PyPI project whose latest version is written.
+    required: false
+  url:
+    description: http-probe only. The address the probe requests with GET.
+    required: false
+  expect-status:
+    description: http-probe only. The status that counts as up.
+    required: false
+    default: "200"
+  expect-body:
+    description: http-probe only. A regular expression the first 1 MiB of the body must match to count as up.
+    required: false
+  interval:
+    description: http-probe only. Seconds between runs; runs inside one interval are one event. Match the schedule.
+    required: false
+    default: "60"
+  image:
+    description: image-tag only. The image tag whose digest is written, registry/name:tag, for example ghcr.io/owner/app:v1.4.0.
+    required: false
+  registry-username:
+    description: image-tag only. The registry user, for a private image.
+    required: false
+  registry-password:
+    description: image-tag only. The registry password or token, from a secret, for a private image. Masked in the log, sent only to the registry, and never leaves your CI.
+    required: false
+runs:
+  using: node24
+  main: dist/index.js
