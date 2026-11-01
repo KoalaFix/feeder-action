@@ -915,7 +915,7 @@ function buildImageClaims(ref, digest, keys, observedAt) {
     claim: {
       value: { image, tag: ref.tag, digest },
       validFrom: observedAt.toISOString(),
-      sourceEventKey: `image:${image}:${ref.tag}@${digest}`,
+      sourceEventKey: `image:${image}:${ref.tag}@${digest}:${observedAt.toISOString()}`,
       evidence: [{ url: tagPageUrl(ref) }]
     }
   }));
@@ -1088,7 +1088,7 @@ function readLatest(name, body) {
   return { version, publishedAt };
 }
 function buildNpmClaims(name, latest, keys, observedAt) {
-  const event = `npm:${name}:${latest.version}${latest.publishedAt === null ? "" : `:${latest.publishedAt}`}`;
+  const event = `npm:${name}:${latest.version}${latest.publishedAt === null ? "" : `:${latest.publishedAt}`}:${observedAt.toISOString()}`;
   return keys.map((key) => ({
     key,
     claim: {
@@ -1167,7 +1167,7 @@ function readLatest2(project, body) {
   return { version, publishedAt };
 }
 function buildPypiClaims(project, latest, keys, observedAt) {
-  const event = `pypi:${project}:${latest.version}${latest.publishedAt === null ? "" : `:${latest.publishedAt}`}`;
+  const event = `pypi:${project}:${latest.version}${latest.publishedAt === null ? "" : `:${latest.publishedAt}`}:${observedAt.toISOString()}`;
   return keys.map((key) => ({
     key,
     claim: {
