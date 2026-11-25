@@ -1,0 +1,24 @@
+# Fails a change to dist/index.js that does not also update dist/index.js.sha256.
+# The bundle is built from KoalaFix's private source tree, so this repository cannot rebuild it. This check cannot
+# prove the bundle matches that source; it makes any change to the bundle a visible, reviewable change to a second file.
+name: check-dist
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: dist/index.js matches its recorded checksum
+        run: |
+          if ! sha256sum --check dist/index.js.sha256; then
+            echo "::error file=dist/index.js::dist/index.js changed without dist/index.js.sha256. The bundle is built in KoalaFix's private repository and synced here; if this change is intended, update dist/index.js.sha256 in the same commit and have it reviewed."
+            exit 1
+          fi
