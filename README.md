@@ -34,7 +34,7 @@ jobs:
   koalafix:
     runs-on: ubuntu-latest
     steps:
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: github-release
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -53,7 +53,7 @@ Run it after your publish job, or on a schedule: each run is a check, so a sched
 version stays the same. It reads the public registry; no npm credential is needed.
 
 ```yaml
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: npm-version
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -68,7 +68,7 @@ Run it after your publish job, or on a schedule: each run is a check, so a sched
 version stays the same. It reads the public PyPI index; no PyPI credential is needed.
 
 ```yaml
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: pypi-version
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -84,7 +84,7 @@ finds the tag where it was is a check, and one that finds it moved writes the ne
 login.
 
 ```yaml
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: image-tag
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -98,7 +98,7 @@ masks the password, sends it only to your registry and its token service, and Ko
 tag and the digest.
 
 ```yaml
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: image-tag
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -122,7 +122,7 @@ jobs:
   koalafix:
     runs-on: self-hosted
     steps:
-      - uses: koalafix/feeder-action@v1
+      - uses: koalafix/feeder-action@ad93a94cce65ef3a1305d7edfcbc0eb3ffed60cf # v1.0.0
         with:
           feeder: http-probe
           token: ${{ secrets.KOALAFIX_FEEDER_TOKEN }}
@@ -176,7 +176,7 @@ write a fact that holds a token or a control character.
 
 ## Versions
 
-`@v1` moves to each fixed release of version 1. To pin exactly, use a release's commit SHA.
+Pin the Action to a full commit SHA, as the examples above do, not to a tag such as `@v1`. A tag can be moved to different code, and a commit cannot. The SHA in the examples is the commit of release `v1.0.0`; the comment after it says which release it is.
 
 ## Licence
 
